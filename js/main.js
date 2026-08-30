@@ -43,7 +43,7 @@
 
     if (submit) {
       submit.disabled = true;
-      submit.textContent = "Sending…";
+      submit.textContent = window.COLO_I18N ? window.COLO_I18N.t("form.sending") : "Sending…";
     }
 
     fetch(action, {
@@ -58,9 +58,9 @@
       .catch(function () {
         if (submit) {
           submit.disabled = false;
-          submit.textContent = "Send message";
+          submit.textContent = window.COLO_I18N ? window.COLO_I18N.t("form.send") : "Send message";
         }
-        window.alert("Something went wrong sending the form. Please try again, or write to me directly.");
+        window.alert(window.COLO_I18N ? window.COLO_I18N.t("form.error") : "Something went wrong sending the form. Please try again, or write to me directly.");
       });
   });
 

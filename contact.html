@@ -1,18 +1,28 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-page="contact">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Contact — Colo, professional cuddling in Lisbon</title>
   <meta name="description" content="Write to Ana to ask a question or arrange a professional cuddling session in Lisbon. A message does not book a session or commit you to anything.">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <script>
+    (function () {
+      var q = new URLSearchParams(location.search).get("lang");
+      var stored = null;
+      try { stored = localStorage.getItem("colo-lang"); } catch (e) {}
+      var lang = (q === "pt" || q === "en") ? q : (stored === "pt" || stored === "en") ? stored : ((navigator.language || "").toLowerCase().indexOf("pt") === 0 ? "pt" : "en");
+      document.documentElement.setAttribute("data-lang", lang);
+      document.documentElement.lang = lang === "pt" ? "pt-PT" : "en";
+    })();
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600&family=Instrument+Sans:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-  <a class="skip-link" href="#main">Skip to content</a>
+  <a class="skip-link" href="#main" data-i18n="skip">Skip to content</a>
   <div class="grain" aria-hidden="true">
     <svg xmlns="http://www.w3.org/2000/svg">
       <filter id="grainContact"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter>
@@ -29,21 +39,29 @@
           <span class="brand-meta">Cuddling · Lisboa</span>
         </span>
       </a>
-      <nav class="nav" aria-label="Primary">
-        <a href="index.html#about">About</a>
-        <a href="faq.html">FAQ</a>
-        <a href="contact.html" aria-current="page">Contact</a>
-        <a class="btn btn-primary" href="contact.html" style="min-height: 46px; padding: 10px 22px; font-size: 15px;">Book a session</a>
-      </nav>
-      <button class="menu-btn" type="button" data-menu-toggle aria-expanded="false" aria-controls="mobile-nav" aria-label="Menu">
-        <span></span><span></span>
-      </button>
+      <div class="header-end">
+        <nav class="nav" data-i18n-aria="nav.primary" aria-label="Primary">
+          <a href="index.html#about" data-i18n="nav.about">About</a>
+          <a href="faq.html" data-i18n="nav.faq">FAQ</a>
+          <a href="contact.html" aria-current="page" data-i18n="nav.contact">Contact</a>
+          <a class="btn btn-primary" href="contact.html" style="min-height: 46px; padding: 10px 22px; font-size: 15px;" data-i18n="nav.book">Book a session</a>
+        </nav>
+        <div class="header-tools">
+          <div class="lang-switch" role="group" data-i18n-aria="nav.lang" aria-label="Language">
+            <button type="button" data-lang-set="en" aria-pressed="true">EN</button>
+            <button type="button" data-lang-set="pt" aria-pressed="false">PT</button>
+          </div>
+          <button class="menu-btn" type="button" data-menu-toggle aria-expanded="false" aria-controls="mobile-nav" data-i18n-aria="nav.menu" aria-label="Menu">
+            <span></span><span></span>
+          </button>
+        </div>
+      </div>
     </div>
-    <nav class="mobile-nav" id="mobile-nav" data-mobile-nav aria-label="Mobile">
-      <a href="index.html#about">About</a>
-      <a href="faq.html">FAQ</a>
-      <a href="contact.html" aria-current="page">Contact</a>
-      <a href="contact.html">Book a session</a>
+    <nav class="mobile-nav" id="mobile-nav" data-mobile-nav data-i18n-aria="nav.mobile" aria-label="Mobile">
+      <a href="index.html#about" data-i18n="nav.about">About</a>
+      <a href="faq.html" data-i18n="nav.faq">FAQ</a>
+      <a href="contact.html" aria-current="page" data-i18n="nav.contact">Contact</a>
+      <a href="contact.html" data-i18n="nav.book">Book a session</a>
     </nav>
   </header>
 
@@ -51,50 +69,50 @@
     <section class="section" style="padding-bottom: 24px;">
       <div class="wrap contact-grid">
         <div class="contact-copy">
-          <span class="eyebrow">Contact</span>
-          <h1>Your message comes directly to me.</h1>
-          <p class="lede lede-lg">Tell me as much or as little as you want. We’ll take it from there — usually with a free intro call before any session.</p>
-          <p class="lede">Writing to me does not book a session or commit you to anything.</p>
+          <span class="eyebrow" data-i18n="contact.eyebrow">Contact</span>
+          <h1 data-i18n="contact.h1">Your message comes directly to me.</h1>
+          <p class="lede lede-lg" data-i18n="contact.lede">Tell me as much or as little as you want. We’ll take it from there — usually with a free intro call before any session.</p>
+          <p class="lede" data-i18n="contact.note">Writing to me does not book a session or commit you to anything.</p>
         </div>
 
         <div>
           <form class="form" data-contact-form novalidate>
             <div class="fields-2">
               <label class="field-wrap">
-                <span class="label">Name *</span>
-                <input class="field" type="text" name="name" required autocomplete="name" placeholder="How should I call you?">
+                <span class="label" data-i18n="form.name">Name *</span>
+                <input class="field" type="text" name="name" required autocomplete="name" data-i18n-placeholder="form.namePh" placeholder="How should I call you?">
               </label>
               <label class="field-wrap">
-                <span class="label">Pronouns</span>
-                <input class="field" type="text" name="pronouns" autocomplete="off" placeholder="e.g. she/her, he/him, they/them">
+                <span class="label" data-i18n="form.pronouns">Pronouns</span>
+                <input class="field" type="text" name="pronouns" autocomplete="off" data-i18n-placeholder="form.pronounsPh" placeholder="e.g. she/her, he/him, they/them">
               </label>
             </div>
             <label class="field-wrap">
-              <span class="label">Email *</span>
+              <span class="label" data-i18n="form.email">Email *</span>
               <input class="field" type="email" name="email" required autocomplete="email" placeholder="you@email.com">
             </label>
             <label class="field-wrap">
-              <span class="label">Phone *</span>
+              <span class="label" data-i18n="form.phone">Phone *</span>
               <input class="field" type="tel" name="phone" required autocomplete="tel" placeholder="+351 …">
             </label>
             <label class="field-wrap">
-              <span class="label">When are you generally free? *</span>
-              <input class="field" type="text" name="availability" required placeholder="e.g. weekday evenings, or Saturday mornings">
+              <span class="label" data-i18n="form.free">When are you generally free? *</span>
+              <input class="field" type="text" name="availability" required data-i18n-placeholder="form.freePh" placeholder="e.g. weekday evenings, or Saturday mornings">
             </label>
             <label class="field-wrap">
-              <span class="label">Anything you’d like me to know</span>
-              <textarea class="field" name="message" rows="4" placeholder="Optional. Share any questions, needs or anything you’d like me to know before our call."></textarea>
+              <span class="label" data-i18n="form.note">Anything you’d like me to know</span>
+              <textarea class="field" name="message" rows="4" data-i18n-placeholder="form.notePh" placeholder="Optional. Share any questions, needs or anything you’d like me to know before our call."></textarea>
             </label>
             <div class="hp" aria-hidden="true">
               <label>Company <input type="text" name="company" tabindex="-1" autocomplete="off"></label>
             </div>
-            <button class="btn btn-primary" type="submit">Send message</button>
-            <p class="form-note">Writing to me does not book a session or commit you to anything.</p>
+            <button class="btn btn-primary" type="submit" data-i18n="form.send">Send message</button>
+            <p class="form-note" data-i18n="contact.note">Writing to me does not book a session or commit you to anything.</p>
           </form>
 
           <div class="form-status" data-form-status role="status">
-            <h3>Thank you.</h3>
-            <p>I’ll get back to you soon. Writing to me does not book a session or commit you to anything — we can take it slowly from here.</p>
+            <h3 data-i18n="form.thanks">Thank you.</h3>
+            <p data-i18n="form.thanksp">I’ll get back to you soon. Writing to me does not book a session or commit you to anything — we can take it slowly from here.</p>
           </div>
         </div>
       </div>
@@ -105,27 +123,28 @@
         <div class="footer-grid">
           <div class="footer-brand">
             <div class="display" style="font-size: 25px; color: var(--closing-ink);">Colo</div>
-            <p>Platonic, professional cuddling for adults — one practitioner, by appointment, in a private space in Lisbon.</p>
+            <p data-i18n="foot.blurb">Platonic, professional cuddling for adults — one practitioner, by appointment, in a private space in Lisbon.</p>
           </div>
           <div class="footer-col">
-            <span class="label">Site</span>
-            <a href="index.html#about">About</a>
-            <a href="faq.html">FAQ</a>
-            <a href="contact.html">Contact</a>
+            <span class="label" data-i18n="foot.site">Site</span>
+            <a href="index.html#about" data-i18n="nav.about">About</a>
+            <a href="faq.html" data-i18n="nav.faq">FAQ</a>
+            <a href="contact.html" data-i18n="nav.contact">Contact</a>
           </div>
           <div class="footer-col">
-            <span class="label">Where</span>
-            <span>Currently serving Lisbon, Portugal</span>
+            <span class="label" data-i18n="foot.where">Where</span>
+            <span data-i18n="foot.serving">Currently serving Lisbon, Portugal</span>
           </div>
         </div>
         <div class="footer-base">
           <span>© 2026 Colo · Lisboa</span>
-          <span>Strictly platonic · Adults only</span>
+          <span data-i18n="foot.legal">Strictly platonic · Adults only</span>
         </div>
       </footer>
     </section>
   </main>
 
+  <script src="js/i18n.js"></script>
   <script src="js/config.js"></script>
   <script src="js/main.js"></script>
 </body>

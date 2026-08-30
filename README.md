@@ -2,6 +2,12 @@
 
 Marketing site for Ana’s solo professional cuddling practice. Static HTML, no accounts, no calendar. Session requests come through the contact form.
 
+## Language
+
+EN / PT toggle in the header. Portuguese is European (`pt-PT`): *contacto*, *telemóvel*, *tu*. Preference is stored, also readable as `?lang=pt` or `?lang=en`. The browser language is used on a first visit if it starts with `pt`.
+
+Copy lives in `js/i18n.js`.
+
 ## Pages
 
 - `index.html` — home
