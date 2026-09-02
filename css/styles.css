@@ -40,6 +40,10 @@ html[data-lang="pt"]:not(.i18n-ready) body {
   visibility: hidden;
 }
 
+html[data-lang="pt"] [data-lang-only="en"] {
+  display: none;
+}
+
 body {
   margin: 0;
   background: var(--cream);
@@ -496,14 +500,12 @@ h3,
   border-radius: 26px;
 }
 
-.card h3,
-.why-card h3 {
+.card h3 {
   margin: 0;
   font-size: 1.45rem;
 }
 
-.card p,
-.why-card p {
+.card p {
   margin: 0;
   color: var(--body);
   font-size: 16px;
@@ -554,31 +556,6 @@ h3,
   font-style: italic;
   color: var(--ink-soft);
   font-size: 1.05rem;
-}
-
-.why-grid {
-  display: grid;
-  gap: 16px;
-  margin-top: 36px;
-}
-
-.why-card {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  padding: 32px 26px 36px;
-  background: var(--cream-deep);
-  border-radius: 30px;
-}
-
-.icon-blob {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 52px;
-  height: 52px;
-  border-radius: 56% 44% 48% 52% / 46% 54% 46% 54%;
-  background: var(--ochre);
 }
 
 .profile {
@@ -712,6 +689,10 @@ details[open] summary .plus {
   margin: 14px 0 0;
   color: var(--body);
   max-width: 40rem;
+}
+
+.faq-item p + p {
+  margin-top: 10px;
 }
 
 .still {
@@ -939,15 +920,13 @@ details[open] summary .plus {
     height: 120px;
   }
 
-  .steps,
-  .why-grid {
+  .steps {
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 24px;
     margin-top: 52px;
   }
 
-  .card,
-  .why-card {
+  .card {
     padding: 40px 34px 44px;
     border-radius: 32px;
   }
