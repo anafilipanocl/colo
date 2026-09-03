@@ -97,21 +97,6 @@ h3,
   line-height: 1.12;
 }
 
-.skip-link {
-  position: absolute;
-  left: 16px;
-  top: -48px;
-  z-index: 20;
-  padding: 10px 16px;
-  border-radius: 999px;
-  background: var(--ink);
-  color: var(--paper);
-}
-
-.skip-link:focus {
-  top: 16px;
-}
-
 .grain {
   pointer-events: none;
   position: fixed;
