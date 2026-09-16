@@ -36,10 +36,6 @@ html {
   scroll-behavior: smooth;
 }
 
-html[data-lang="pt"]:not(.i18n-ready) body {
-  visibility: hidden;
-}
-
 html[data-lang="pt"] [data-lang-only="en"] {
   display: none;
 }
@@ -257,7 +253,10 @@ h3,
   background: var(--sand);
 }
 
-.lang-switch button {
+.lang-switch a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   min-width: 38px;
   min-height: 32px;
   padding: 0 10px;
@@ -268,10 +267,10 @@ h3,
   font-size: 12px;
   letter-spacing: 0.08em;
   font-weight: 500;
-  cursor: pointer;
+  text-decoration: none;
 }
 
-.lang-switch button[aria-pressed="true"] {
+.lang-switch a[aria-current="true"] {
   background: var(--paper);
   color: var(--ink);
 }

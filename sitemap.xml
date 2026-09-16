@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://anafilipanocl.github.io/colo/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://anafilipanocl.github.io/colo/"/>
-    <xhtml:link rel="alternate" hreflang="pt-PT" href="https://anafilipanocl.github.io/colo/?lang=pt"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://anafilipanocl.github.io/colo/"/>
+    <loc>https://colocuddling.com/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://colocuddling.com/"/>
+    <xhtml:link rel="alternate" hreflang="pt-PT" href="https://colocuddling.com/pt/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://colocuddling.com/"/>
   </url>
   <url>
-    <loc>https://anafilipanocl.github.io/colo/?lang=pt</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://anafilipanocl.github.io/colo/"/>
-    <xhtml:link rel="alternate" hreflang="pt-PT" href="https://anafilipanocl.github.io/colo/?lang=pt"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://anafilipanocl.github.io/colo/"/>
+    <loc>https://colocuddling.com/pt/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://colocuddling.com/"/>
+    <xhtml:link rel="alternate" hreflang="pt-PT" href="https://colocuddling.com/pt/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://colocuddling.com/"/>
   </url>
 </urlset>

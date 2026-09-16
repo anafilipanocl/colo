@@ -1,19 +1,19 @@
 <!doctype html>
-<html lang="en" data-page="home">
+<html lang="en" data-lang="en" data-page="home">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Professional cuddling in Lisbon · Platonic touch | Colo</title>
   <meta name="description" content="Professional cuddling in Lisbon with Ana. Platonic, consensual sessions with a free intro call, in English or Portuguese, for adults of every body and identity.">
-  <link rel="alternate" hreflang="en" href="https://anafilipanocl.github.io/colo/">
-  <link rel="alternate" hreflang="pt-PT" href="https://anafilipanocl.github.io/colo/?lang=pt">
-  <link rel="alternate" hreflang="x-default" href="https://anafilipanocl.github.io/colo/">
+  <link rel="alternate" hreflang="en" href="https://colocuddling.com/">
+  <link rel="alternate" hreflang="pt-PT" href="https://colocuddling.com/pt/">
+  <link rel="alternate" hreflang="x-default" href="https://colocuddling.com/">
   <meta property="og:site_name" content="Colo">
   <meta property="og:title" content="Professional cuddling in Lisbon · Platonic touch | Colo">
   <meta property="og:description" content="A space for platonic, consensual human touch. Professional cuddling in Lisbon.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://anafilipanocl.github.io/colo/">
-  <meta property="og:image" content="https://anafilipanocl.github.io/colo/images/portrait.jpg">
+  <meta property="og:url" content="https://colocuddling.com/">
+  <meta property="og:image" content="https://colocuddling.com/images/portrait.jpg">
   <meta property="og:locale" content="en_GB">
   <meta property="og:locale:alternate" content="pt_PT">
   <meta name="twitter:card" content="summary">
@@ -24,8 +24,8 @@
     "name": "Colo",
     "alternateName": "Colo — Professional cuddling in Lisbon",
     "description": "Platonic, consensual professional cuddling sessions in Lisbon, with a free intro call before the first session.",
-    "url": "https://anafilipanocl.github.io/colo/",
-    "image": "https://anafilipanocl.github.io/colo/images/portrait.jpg",
+    "url": "https://colocuddling.com/",
+    "image": "https://colocuddling.com/images/portrait.jpg",
     "priceRange": "€90 per hour",
     "currenciesAccepted": "EUR",
     "paymentAccepted": "Revolut, MB Way, Bank transfer",
@@ -43,21 +43,20 @@
   }
   </script>
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <script>
+  <script data-lang-redirect>
     (function () {
       var q = new URLSearchParams(location.search).get("lang");
       var stored = null;
       try { stored = localStorage.getItem("colo-lang"); } catch (e) {}
       var lang = (q === "pt" || q === "en") ? q : (stored === "pt" || stored === "en") ? stored : ((navigator.language || "").toLowerCase().indexOf("pt") === 0 ? "pt" : "en");
-      document.documentElement.setAttribute("data-lang", lang);
-      document.documentElement.lang = lang === "pt" ? "pt-PT" : "en";
+      if (lang === "pt") location.replace("pt/" + location.hash);
     })();
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600&family=Instrument+Sans:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
-  <link rel="canonical" href="https://anafilipanocl.github.io/colo/" data-canonical>
+  <link rel="canonical" href="https://colocuddling.com/">
 </head>
 <body>
   <div class="grain" aria-hidden="true">
@@ -85,8 +84,8 @@
         </nav>
         <div class="header-tools">
           <div class="lang-switch" role="group" data-i18n-aria="nav.lang" aria-label="Language">
-            <button type="button" data-lang-set="en" aria-pressed="true">EN</button>
-            <button type="button" data-lang-set="pt" aria-pressed="false">PT</button>
+            <a href="./" hreflang="en" lang="en" data-lang-set="en" aria-current="true">EN</a>
+            <a href="pt/" hreflang="pt-PT" lang="pt-PT" data-lang-set="pt">PT</a>
           </div>
           <button class="menu-btn" type="button" data-menu-toggle aria-expanded="false" aria-controls="mobile-nav" data-i18n-aria="nav.menu" aria-label="Menu">
             <span></span><span></span>
@@ -140,7 +139,7 @@
           <article class="card">
             <span class="display step-num">01</span>
             <h3 data-i18n="how.s1">Reach out</h3>
-            <p data-i18n="how.s1p">Send me a message through the contact form below. You can tell me as much or as little as you like.</p>
+            <p data-i18n="how.s1p">Send me a message through the contact form below, whenever feels right. You can tell me as much or as little as you like.</p>
           </article>
           <article class="card">
             <span class="display step-num">02</span>

@@ -4,15 +4,31 @@ Marketing site for Ana’s solo professional cuddling practice. Static HTML, no 
 
 ## Language
 
-EN / PT toggle in the header. Portuguese is European (`pt-PT`): *contacto*, *telemóvel*, *tu*. Preference is stored, also readable as `?lang=pt` or `?lang=en`. The browser language is used on a first visit if it starts with `pt`.
+EN / PT links in the header. Portuguese is European (`pt-PT`): *contacto*, *telemóvel*, *tu*.
 
-Copy lives in `js/i18n.js`.
+Each language is its own static page so search engines can index both:
+
+- `index.html` — English, at `https://colocuddling.com/`
+- `pt/index.html` — Portuguese, at `https://colocuddling.com/pt/`
+
+Copy lives in `js/i18n.js`. After changing copy or the markup of `index.html`, rebuild both pages:
+
+```sh
+node scripts/build.mjs
+```
+
+The choice of language is remembered. On a first visit to the English page, a browser set to Portuguese is sent to `/pt/`, and old `?lang=pt` links go there too.
 
 ## Pages
 
-- `index.html` — home
-- `faq.html` — questions, grouped
-- `contact.html` — enquiry form
+- `index.html`, `pt/index.html` — home
+- `faq.html`, `contact.html` — redirects to the matching section
+- `404.html` — not-found page
+
+## SEO
+
+- Domain: `colocuddling.com`. Canonical, `hreflang`, Open Graph and structured data all use it.
+- `sitemap.xml` and `robots.txt` at the root. Submit the sitemap in Google Search Console.
 
 ## Connect the form
 
@@ -30,4 +46,4 @@ Until that is set, the form still shows the on-page thank-you message so the pag
 
 In the repo: **Settings → Pages → Deploy from a branch → `main` / root**.
 
-The site will be at `https://<user>.github.io/<repo>/`.
+The live site is `https://colocuddling.com/`. The GitHub Pages copy at `https://anafilipanocl.github.io/colo/` points search engines to it through its canonical tags.

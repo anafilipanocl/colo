@@ -239,130 +239,36 @@
     },
   };
 
-  function readStored() {
-    try {
-      return localStorage.getItem(STORAGE);
-    } catch (e) {
-      return null;
-    }
-  }
-
   function writeStored(lang) {
     try {
       localStorage.setItem(STORAGE, lang);
     } catch (e) {}
   }
 
-  function detect() {
-    var params = new URLSearchParams(location.search);
-    var query = params.get("lang");
-    if (query === "pt" || query === "en") return query;
-    var stored = readStored();
-    if (stored === "pt" || stored === "en") return stored;
-    var nav = (navigator.language || "").toLowerCase();
-    return nav.indexOf("pt") === 0 ? "pt" : "en";
-  }
+  var state = { lang: document.documentElement.getAttribute("data-lang") === "pt" ? "pt" : "en" };
 
   function t(key) {
     var pack = strings[state.lang] || strings.en;
     return pack[key] != null ? pack[key] : (strings.en[key] || key);
   }
 
-  function setText(el, value) {
-    if (el.hasAttribute("data-i18n-html")) {
-      el.innerHTML = value;
-    } else {
-      el.textContent = value;
-    }
-  }
-
-  function apply() {
-    document.documentElement.lang = htmlLang[state.lang] || "en";
-    document.documentElement.setAttribute("data-lang", state.lang);
-
-    var page = document.documentElement.getAttribute("data-page") || "home";
-    document.title = t("meta." + page + "Title");
-
-    var desc = document.querySelector('meta[name="description"]');
-    if (desc) desc.setAttribute("content", t("meta." + page + "Desc"));
-
-    var ogTitle = document.querySelector('meta[property="og:title"]');
-    if (ogTitle) ogTitle.setAttribute("content", t("meta.ogHomeTitle"));
-    var ogDesc = document.querySelector('meta[property="og:description"]');
-    if (ogDesc) ogDesc.setAttribute("content", t("meta.ogHomeDesc"));
-
-    var base = "https://anafilipanocl.github.io/colo/";
-    var pageUrl = state.lang === "pt" ? base + "?lang=pt" : base;
-    var canonical = document.querySelector("[data-canonical]");
-    if (canonical) canonical.setAttribute("href", pageUrl);
-    var ogUrl = document.querySelector('meta[property="og:url"]');
-    if (ogUrl) ogUrl.setAttribute("content", pageUrl);
-    var ogLocale = document.querySelector('meta[property="og:locale"]');
-    if (ogLocale) ogLocale.setAttribute("content", state.lang === "pt" ? "pt_PT" : "en_GB");
-    var ogLocaleAlt = document.querySelector('meta[property="og:locale:alternate"]');
-    if (ogLocaleAlt) ogLocaleAlt.setAttribute("content", state.lang === "pt" ? "en_GB" : "pt_PT");
-
-    document.querySelectorAll("[data-i18n]").forEach(function (el) {
-      setText(el, t(el.getAttribute("data-i18n")));
-    });
-    document.querySelectorAll("[data-i18n-html]").forEach(function (el) {
-      el.innerHTML = t(el.getAttribute("data-i18n-html"));
-    });
-    document.querySelectorAll("[data-i18n-placeholder]").forEach(function (el) {
-      el.setAttribute("placeholder", t(el.getAttribute("data-i18n-placeholder")));
-    });
-    document.querySelectorAll("[data-i18n-aria]").forEach(function (el) {
-      el.setAttribute("aria-label", t(el.getAttribute("data-i18n-aria")));
-    });
-    document.querySelectorAll("[data-i18n-alt]").forEach(function (el) {
-      el.setAttribute("alt", t(el.getAttribute("data-i18n-alt")));
-    });
-
-    document.querySelectorAll("[data-lang-set]").forEach(function (btn) {
-      btn.setAttribute("aria-pressed", btn.getAttribute("data-lang-set") === state.lang ? "true" : "false");
-    });
-
-    document.documentElement.classList.add("i18n-ready");
-    syncUrl(state.lang);
-  }
-
-  function syncUrl(lang) {
-    var url = new URL(location.href);
-    url.searchParams.set("lang", lang);
-    history.replaceState(null, "", url.pathname + url.search + url.hash);
-  }
-
-  function setLang(lang) {
-    if (lang !== "en" && lang !== "pt") return;
-    state.lang = lang;
-    writeStored(lang);
-    syncUrl(lang);
-    apply();
-  }
-
-  var state = { lang: detect() };
-
   window.COLO_I18N = {
+    strings: strings,
+    htmlLang: htmlLang,
     t: t,
     lang: function () {
       return state.lang;
     },
-    setLang: setLang,
-    apply: apply,
   };
 
-  function bind() {
-    document.querySelectorAll("[data-lang-set]").forEach(function (btn) {
-      btn.addEventListener("click", function () {
-        setLang(btn.getAttribute("data-lang-set"));
-      });
-    });
-    apply();
-  }
-
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", bind);
-  } else {
-    bind();
-  }
+  // Pages are pre-rendered per language (see scripts/build.mjs); switching just remembers the choice.
+  document.addEventListener("click", function (event) {
+    var link = event.target.closest && event.target.closest("a[data-lang-set]");
+    if (!link) return;
+    writeStored(link.getAttribute("data-lang-set"));
+    if (location.hash) {
+      event.preventDefault();
+      location.href = link.href.split("#")[0] + location.hash;
+    }
+  });
 })();

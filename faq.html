@@ -4,16 +4,17 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>FAQ — Colo</title>
-  <link rel="canonical" href="index.html#faq">
-  <meta http-equiv="refresh" content="0;url=index.html#faq">
+  <meta name="robots" content="noindex">
+  <link rel="canonical" href="https://colocuddling.com/">
+  <meta http-equiv="refresh" content="0;url=./#faq">
   <script>
     (function () {
-      var params = location.search || "";
-      location.replace("index.html" + params + "#faq");
+      var pt = new URLSearchParams(location.search).get("lang") === "pt";
+      location.replace((pt ? "pt/" : "./") + "#faq");
     })();
   </script>
 </head>
 <body>
-  <p><a href="index.html#faq">Continue to Questions</a></p>
+  <p><a href="./#faq">Continue to Questions</a></p>
 </body>
 </html>
