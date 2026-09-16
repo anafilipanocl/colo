@@ -4,13 +4,13 @@
 
   var strings = {
     en: {
-      "meta.homeTitle": "Colo — Professional cuddling in Lisbon",
-      "meta.homeDesc": "Professional cuddling in Lisbon. A space for platonic, consensual human touch — where you can feel safe, slow down and simply be.",
+      "meta.homeTitle": "Professional cuddling in Lisbon · Platonic touch | Colo",
+      "meta.homeDesc": "Professional cuddling in Lisbon with Ana. Platonic, consensual sessions with a free intro call, in English or Portuguese, for adults of every body and identity.",
       "meta.faqTitle": "FAQ — Colo, professional cuddling in Lisbon",
       "meta.faqDesc": "Answers about professional cuddling in Lisbon: what it is, safety and boundaries, booking, sessions, and what Colo means.",
       "meta.contactTitle": "Contact — Colo, professional cuddling in Lisbon",
       "meta.contactDesc": "Write to Ana to ask a question or arrange a professional cuddling session in Lisbon. A message does not book a session or commit you to anything.",
-      "meta.ogHomeTitle": "Colo — Professional cuddling in Lisbon",
+      "meta.ogHomeTitle": "Professional cuddling in Lisbon · Platonic touch | Colo",
       "meta.ogHomeDesc": "A space for platonic, consensual human touch. Professional cuddling in Lisbon.",
       "nav.primary": "Primary",
       "nav.mobile": "Mobile",
@@ -121,13 +121,13 @@
       "form.error": "Something went wrong sending the form. Please try again, or write to me directly.",
     },
     pt: {
-      "meta.homeTitle": "Colo — Cuddling profissional em Lisboa",
-      "meta.homeDesc": "Cuddling profissional em Lisboa. Um espaço de toque humano platónico e consensual, onde podes sentir-te em segurança, abrandar e simplesmente estar.",
+      "meta.homeTitle": "Cuddling profissional em Lisboa · Toque platónico | Colo",
+      "meta.homeDesc": "Cuddling profissional em Lisboa com a Ana. Sessões de toque platónico e consensual, com chamada de apresentação gratuita, em português ou inglês.",
       "meta.faqTitle": "Perguntas — Colo, cuddling profissional em Lisboa",
       "meta.faqDesc": "Respostas sobre cuddling profissional em Lisboa: o que é, segurança e limites, marcação e sessões.",
       "meta.contactTitle": "Contacto — Colo, cuddling profissional em Lisboa",
       "meta.contactDesc": "Escreve à Ana para fazer uma pergunta ou marcar uma sessão de cuddling profissional em Lisboa. Uma mensagem não marca uma sessão nem te compromete com nada.",
-      "meta.ogHomeTitle": "Colo — Cuddling profissional em Lisboa",
+      "meta.ogHomeTitle": "Cuddling profissional em Lisboa · Toque platónico | Colo",
       "meta.ogHomeDesc": "Um espaço de toque humano platónico e consensual. Cuddling profissional em Lisboa.",
       "nav.primary": "Principal",
       "nav.mobile": "Móvel",
@@ -290,6 +290,17 @@
     if (ogTitle) ogTitle.setAttribute("content", t("meta.ogHomeTitle"));
     var ogDesc = document.querySelector('meta[property="og:description"]');
     if (ogDesc) ogDesc.setAttribute("content", t("meta.ogHomeDesc"));
+
+    var base = "https://anafilipanocl.github.io/colo/";
+    var pageUrl = state.lang === "pt" ? base + "?lang=pt" : base;
+    var canonical = document.querySelector("[data-canonical]");
+    if (canonical) canonical.setAttribute("href", pageUrl);
+    var ogUrl = document.querySelector('meta[property="og:url"]');
+    if (ogUrl) ogUrl.setAttribute("content", pageUrl);
+    var ogLocale = document.querySelector('meta[property="og:locale"]');
+    if (ogLocale) ogLocale.setAttribute("content", state.lang === "pt" ? "pt_PT" : "en_GB");
+    var ogLocaleAlt = document.querySelector('meta[property="og:locale:alternate"]');
+    if (ogLocaleAlt) ogLocaleAlt.setAttribute("content", state.lang === "pt" ? "en_GB" : "pt_PT");
 
     document.querySelectorAll("[data-i18n]").forEach(function (el) {
       setText(el, t(el.getAttribute("data-i18n")));
